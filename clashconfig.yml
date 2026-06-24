@@ -7,46 +7,18 @@ authentication: # http,socks 入口的验证用户名，密码
 skip-auth-prefixes: # 设置跳过验证的 IP 段
   - 127.0.0.1/8
   - ::1/128
-
-#  find-process-mode has 3 values:always, strict, off
-#  - always, 开启，强制匹配所有进程
-#  - strict, 默认，由 mihomo 判断是否开启
-#  - off, 不匹配进程，推荐在路由器上使用此模式
 find-process-mode: strict
-
 mode: rule
-
 geodata-mode: true
-
 #自定义 geodata url
 geox-url:
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
   geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
   mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
-
-geo-auto-update: true # 是否自动更新 geodata
-geo-update-interval: 24 # 更新间隔，单位：小时
-global-ua: clash.meta
-
-# Matcher implementation used by GeoSite, available implementations:
-# - succinct (default, same as rule-set)
-# - mph (from V2Ray, also `hybrid` in Xray)
-geosite-matcher: succinct
-
-# 可选的加载模式如下
-#     - standard：标准加载器
-#     - memconservative：专为内存受限 (小内存) 设备优化的加载器 (默认值)
-geodata-loader: memconservative
-
-log-level: warning # 日志等级 silent/error/warning/info/debug
-
+log-level: warning
 ipv6: true # 开启 IPv6 总开关，关闭阻断所有 IPv6 链接和屏蔽 DNS 请求 AAAA 记录
 
-#  TCP keep alive interval
-disable-keep-alive: false #目前在android端强制为true
-keep-alive-idle: 300
-keep-alive-interval: 300
 
 # 类似于 /etc/hosts, 仅支持配置单个 IP
 hosts:
