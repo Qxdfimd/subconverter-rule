@@ -1,38 +1,16 @@
-mixed-port: 7890 # HTTP(S) 和 SOCKS 代理混合端口
+mixed-port: 7890
 
-allow-lan: true # 允许局域网连接
-bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
-authentication: # http,socks 入口的验证用户名，密码
+ipv6: true
+mode: rule
+log-level: warning
+allow-lan: true
+bind-address: "*"
+authentication:
   - "Qxdfimd:100225lmx"
-skip-auth-prefixes: # 设置跳过验证的 IP 段
+skip-auth-prefixes:
   - 127.0.0.1/8
   - ::1/128
-
-mode: rule
-
-#自定义 geodata url
-geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
-  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
   
-log-level: warning # 日志等级 silent/error/warning/info/debug
-
-ipv6: true # 开启 IPv6 总开关，关闭阻断所有 IPv6 链接和屏蔽 DNS 请求 AAAA 记录
-
-external-controller: "127.0.0.1:9090" # RESTful API 监听地址
-secret: "100225lmx" # `Authorization:Bearer ${secret}`
-
-tcp-concurrent: true # TCP 并发连接所有 IP, 将使用最快握手的 TCP
-
-#  TCP keep alive interval
-disable-keep-alive: false #目前在android端强制为true
-keep-alive-idle: 300
-keep-alive-interval: 300
-
-unified-delay: true # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
-
 # 嗅探域名 可选配置
 sniffer:
   enable: true
