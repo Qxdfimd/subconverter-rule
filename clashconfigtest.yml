@@ -1,10 +1,4 @@
-# port: 7890 # HTTP(S) 代理服务器端口
-# socks-port: 7891 # SOCKS5 代理端口
 mixed-port: 7890 # HTTP(S) 和 SOCKS 代理混合端口
-# redir-port: 7892 # 透明代理端口，用于 Linux 和 MacOS
-
-# Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
-# tproxy-port: 7893
 
 allow-lan: true # 允许局域网连接
 bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
@@ -13,21 +7,8 @@ authentication: # http,socks 入口的验证用户名，密码
 skip-auth-prefixes: # 设置跳过验证的 IP 段
   - 127.0.0.1/8
   - ::1/128
-lan-allowed-ips: # 允许连接的 IP 地址段，仅作用于 allow-lan 为 true, 默认值为 0.0.0.0/0 和::/0
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips: # 禁止连接的 IP 地址段，黑名单优先级高于白名单，默认值为空
-  - 192.168.0.3/32
-
-#  find-process-mode has 3 values:always, strict, off
-#  - always, 开启，强制匹配所有进程
-#  - strict, 默认，由 mihomo 判断是否开启
-#  - off, 不匹配进程，推荐在路由器上使用此模式
-find-process-mode: strict
 
 mode: rule
-
-geodata-mode: true
 
 #自定义 geodata url
 geox-url:
@@ -35,20 +16,7 @@ geox-url:
   geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
   mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb"
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
-
-geo-auto-update: true # 是否自动更新 geodata
-geo-update-interval: 24 # 更新间隔，单位：小时
-global-ua: clash.meta
-
-# Matcher implementation used by GeoSite, available implementations:
-# - succinct (default, same as rule-set)
-# - mph (from V2Ray, also `hybrid` in Xray)
-geosite-matcher: succinct
-
-# 可选的加载模式如下
-#     - standard：标准加载器
-#     - memconservative：专为内存受限 (小内存) 设备优化的加载器 (默认值)
-geodata-loader: memconservative
+  
 
 log-level: warning # 日志等级 silent/error/warning/info/debug
 
@@ -56,12 +24,6 @@ ipv6: true # 开启 IPv6 总开关，关闭阻断所有 IPv6 链接和屏蔽 DNS
 
 external-controller: '127.0.0.1:9090' # RESTful API 监听地址
 secret: "100225lmx" # `Authorization:Bearer ${secret}`
-
-# RESTful API CORS标头配置
-external-controller-cors:
-  allow-origins:
-    - "*"
-  allow-private-network: true
 
 tcp-concurrent: true # TCP 并发连接所有 IP, 将使用最快握手的 TCP
 
@@ -93,25 +55,6 @@ profile: # 存储 select 选择记录
   store-selected: true
 
 unified-delay: true # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
-
-# Tun 配置
-tun:
-  enable: false
-  stack: mixed # system/gvisor/mixed
-  auto-detect-interface: true # 自动识别出口网卡
-  auto-route: true # 配置路由表
-  auto-redirect: false # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
-  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  device: utun0
-  mtu: 9000 # 最大传输单元
-  inet6-address: fdfe:dcba:9876::1/126
-  disable-icmp-forwarding: flase # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
-  endpoint-independent-nat: false # 启用独立于端点的 NAT
-  exclude-package: # 排除被路由的 Android 应用包名
-  - com.android.captiveportallogin
 
 # 嗅探域名 可选配置
 sniffer:
