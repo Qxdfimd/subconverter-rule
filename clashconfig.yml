@@ -52,14 +52,7 @@ ipv6: true # 开启 IPv6 总开关，关闭阻断所有 IPv6 链接和屏蔽 DNS
 external-controller: '0.0.0.0:9090' # RESTful API 监听地址
 secret: "100225lmx" # `Authorization:Bearer ${secret}`
 
-
 tcp-concurrent: true # TCP 并发连接所有 IP, 将使用最快握手的 TCP
-
-# 配置 WEB UI 目录，使用 http://{{external-controller}}/ui 访问
-external-ui: "/path/to/ui/folder/"
-external-ui-name: "xd"
-# 目前支持下载zip,tgz格式的压缩包
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 #  TCP keep alive interval
 disable-keep-alive: false #目前在android端强制为true
