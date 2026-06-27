@@ -64,6 +64,18 @@ profile: # 存储 select 选择记录
 
 unified-delay: true # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
 
+ntp:
+  enable: true
+  write-to-system: false
+  server: pool.ntp.org
+  port: 123
+  interval: 60
+
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  dialer-ip4p-convert: false
+
 # Tun 配置
 tun:
   enable: false
