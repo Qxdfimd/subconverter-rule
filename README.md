@@ -1,4 +1,4 @@
-# 规则转换模板
+# 自用Clash规则转换模板
 ***使用GeoDat，无DNS泄露***  
 ***仅支持clash meta/mihomo***  
 
