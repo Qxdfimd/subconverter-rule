@@ -1,2 +1,3 @@
 GEOIP,private,no-resolve
 GEOSITE,private
+DOMAIN-SUFFIX,steamserver.net
