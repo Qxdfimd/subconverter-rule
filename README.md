@@ -6,10 +6,10 @@
 *自动重命名倍率*  
 
 ## 完整版  
-Apple,FCM,Google,Meta,Bing,OneDrive,Microsoft,Discord,Line,Signal,Telegram,Twitter,Communication,Anthropic,OpenAi,Ai,Bilibili,Netflix,Spotify,Steam,YouTube,Porn,Entertainment,Speedtest分流  
+FCM,Apple,Google,Meta,Bing,OneDrive,Microsoft,Discord,Line,Signal,Telegram,Twitter,Communication,Anthropic,OpenAi,Ai,Bilibili,Netflix,Spotify,Steam,YouTube,Porn,Entertainment,Speedtest分流  
 https://raw.githubusercontent.com/Qxdfimd/clash-rule/refs/heads/main/full.ini  
 
 
 ## 精简版  
-Apple,FCM,Google,Meta,Microsoft,Communication,Ai,Porn,Entertainment,Speedtest分流  
+FCM,Apple,Google,Meta,Microsoft,Communication,Ai,Porn,Entertainment,Speedtest分流  
 https://raw.githubusercontent.com/Qxdfimd/clash-rule/refs/heads/main/lite.ini  
