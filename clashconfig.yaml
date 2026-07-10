@@ -139,10 +139,9 @@ dns:
   respect-rules: true
   # DNS 主要域名配置
   # 支持 UDP，TCP，DoT，DoH，DoQ
-  # 这部分为主要 DNS 配置，影响所有直连，确保使用对大陆解析精准的 DNS
   nameserver:
-    - tcp://1.1.1.1
-    - tcp://8.8.8.8
+    - udp://1.1.1.1
+    - udp://8.8.8.8
   # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
   direct-nameserver:
     - system
