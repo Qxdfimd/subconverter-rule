@@ -1,4 +1,4 @@
-# 自用Clash规则转换模板
+# 自用规则转换模板
 ***使用GeoDat，无DNS泄露***  
 ***支持clashmeta/mihomo/singbox***  
 
