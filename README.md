@@ -10,7 +10,7 @@ FCM,Apple,Google,Meta,Microsoft,X,Bing,Github,Anthropic,GoogleDeepmind,OpenAi,xA
 https://raw.githubusercontent.com/Qxdfimd/clash-rule/refs/heads/main/full.ini  
 
 ## 精简版  
-FCM,Apple,Google,Meta,Microsoft,X,Bing,Github,Ai,Discord,Line,Signal,Telegram,Twitter,Communication,Bilibili,Netflix,Spotify,Entertainment,DropBox,OneDrive,Mega,NetDisk,Porn,Speedtest分流  
+FCM,Apple,Google,Meta,Microsoft,X,Bing,Github,Ai,Discord,Line,Signal,Telegram,Twitter,Communication,Bilibili,Netflix,Spotify,Entertainment,OneDrive,NetDisk,Porn,Speedtest分流  
 https://raw.githubusercontent.com/Qxdfimd/clash-rule/refs/heads/main/lite.ini  
 
 ## 基础版  
