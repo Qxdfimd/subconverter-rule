@@ -1,6 +1,7 @@
 # 自用规则转换模板
 ***使用GeoDat，无DNS泄露***  
 ***支持clashmeta/mihomo/singbox***  
+***白名单/黑名单模式可切换***
 *修复Play下载，绕过Steam下载*  
 
 *自动添加国旗emoji*  
