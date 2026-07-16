@@ -1,6 +1,7 @@
 # 自用规则转换模板
 ***使用GeoDat，无DNS泄露***  
 ***支持clashmeta/mihomo/singbox***  
+*修复Play下载，绕过Steam下载*  
 
 *自动添加国旗emoji*  
 *自动重命名倍率*  
@@ -15,4 +16,5 @@ https://raw.githubusercontent.com/Qxdfimd/clash-rule/refs/heads/main/lite.ini
 
 ## 基础版  
 无分流  
+绕过FCM,OneDrive，代理Bing  
 https://raw.githubusercontent.com/Qxdfimd/clash-rule/refs/heads/main/base.ini  
