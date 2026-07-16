@@ -140,8 +140,8 @@ dns:
   # DNS 主要域名配置
   # 支持 UDP，TCP，DoT，DoH，DoQ
   nameserver:
-    - udp://1.1.1.1
-    - udp://8.8.8.8
+    - 1.1.1.1
+    - 8.8.8.8
   # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
   direct-nameserver:
     - system
