@@ -81,8 +81,8 @@ tun:
   stack: mixed # system/gvisor/mixed
   auto-detect-interface: true # 自动识别出口网卡
   auto-route: true # 配置路由表
-  auto-redirect: true # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
-  strict-route: true # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
+  auto-redirect: false # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
+  strict-route: false # 将所有连接路由到 tun 来防止泄漏，但你的设备将无法其他设备被访问
   dns-hijack:
     - udp://any:53
     - tcp://any:53
@@ -118,43 +118,39 @@ sniffer:
 
 # DNS 配置
 dns:
-  cache-algorithm: arc
+  cache-algorithm: arc # DNS 缓存淘汰算法，arc 命中率更高
   enable: true # 关闭将使用系统 DNS
-  prefer-h3: true # 是否开启 DoH 支持 HTTP/3，将并发尝试
-  listen: '[::]:53' # 开启 DNS 服务器监听
-  ipv6: true # false 将返回 AAAA 的空结果
-  ipv6-timeout: 300 # 单位：ms，内部双栈并发时，向上游查询 AAAA 时，等待 AAAA 的时间，默认 100ms
-  # 用于解析 nameserver，fallback 以及其他 DNS 服务器配置的，DNS 服务域名
+  prefer-h3: true # 是否开启 DoH 的 HTTP/3 支持，将并发尝试
+  listen: '[::]:1053' # 开启 DNS 服务器监听地址
+  ipv6: true
+  ipv6-timeout: 300 # 单位：ms。内部双栈并发时，向上游查询 AAAA 的等待时间，默认 100ms
+  # 用于解析 nameserver、fallback 以及其他 DNS 服务器配置中的 DNS 服务域名
   # 只能使用纯 IP 地址，可使用加密 DNS
   default-nameserver:
-    - system
-    - dhcp://en0
-  enhanced-mode: redir-host
-  use-hosts: true # 查询 hosts
-  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
-  # 如果为false（默认值）则这三部分的dns服务器在未特别指定的情况下会直连
-  # 如果为true，将会按照rules的规则匹配链接方式（走代理或直连），如果有特别指定则任然以指定值为准
-  # 仅当proxy-server-nameserver非空时可以开启此选项, 强烈不建议和prefer-h3一起使用
-  # 此外，这三者配置中的dns服务器如果出现域名会采用default-nameserver配置项解析，也请确保正确配置default-nameserver
+    - 119.29.29.29
+    - 119.28.28.28
+  enhanced-mode: redir-host # 增强模式：redir-host / fake-ip
+  use-hosts: true # 查询 hosts（即使用本文件下方的 hosts 配置）
+  # 配置后面的 nameserver、fallback 和 nameserver-policy 向 DNS 服务器的连接过程是否遵守 rules 规则
+  # 如果为 false（默认值），则这三部分的 DNS 服务器在未特别指定时会直连
+  # 如果为 true，将会按照 rules 的规则匹配链接方式（走代理或直连），如果有特别指定则仍然以指定值为准
+  # 仅当 proxy-server-nameserver 非空时可以开启此选项，强烈不建议和 prefer-h3 一起使用
+  # 此外，这三者配置中的 DNS 服务器如果出现域名，会采用 default-nameserver 解析，请确保其正确配置
   respect-rules: true
   # DNS 主要域名配置
-  # 支持 UDP，TCP，DoT，DoH，DoQ
+  # 支持 UDP、TCP、DoT、DoH、DoQ
   nameserver:
-    - https://dns.google/dns-query
-    - tls://dns.google
+    - https://dns.google/dns-query # Google DoH
+    - tls://dns.google # Google DoT
   # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
   direct-nameserver:
-    - system
-    - dhcp://en0
-  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循nameserver-policy、nameserver和fallback的配置
+    - https://dns.pub/dns-query # DNS PUB DoH
+    - tls://dns.pub # DNS PUB DoT
+  # 专用于节点域名解析的 DNS 服务器，非必要配置项，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
   proxy-server-nameserver:
-    - https://dns.pub/dns-query
-    - tls://dns.pub
+    - https://dns.pub/dns-query # DNS PUB DoH
+    - tls://dns.pub # DNS PUB DoT
 #host
 hosts:
   '*.clash.dev': 127.0.0.1
   'alpha.clash.dev': '::1'
-  dns.google: ['2001:4860:4860::8888', 8.8.8.8, '2001:4860:4860::8844', 8.8.4.4]
-  cloudflare-dns.com: ['2606:4700:4700::1111', 1.1.1.1, '2606:4700:4700::1001', 1.0.0.1]
-  dns.pub: ['2402:4e00::', 119.29.29.29, '2402:4e00:1::', 119.28.28.28]
-  dns.alidns.com: ['2400:3200::1', 223.5.5.5, '2400:3200::2', 223.6.6.6]
