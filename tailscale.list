@@ -1,2 +1,3 @@
+# tailnet
 IP-CIDR,100.64.0.0/10,no-resolve
 IP-CIDR,fd7a:115c:a1e0::/48,no-resolve
