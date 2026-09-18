@@ -77,7 +77,7 @@ experimental:
 
 # Tun 配置
 tun:
-  enable: true
+  enable: false
   stack: mixed # system/gvisor/mixed
   auto-detect-interface: true # 自动识别出口网卡
   auto-route: true # 配置路由表
